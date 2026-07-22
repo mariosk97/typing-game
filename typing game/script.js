@@ -8,6 +8,12 @@
 // ΣΤΟΙΧΕΙΑ HTML
 // -----------------------------
 
+const modeButtons = document.querySelectorAll('input[name="mode"]');
+
+const wordBox = document.getElementById("wordBox");
+
+const listSelect = document.getElementById("listSelect");
+
 const menuScreen = document.getElementById("menuScreen");
 const gameScreen = document.getElementById("gameScreen");
 const finishScreen = document.getElementById("finishScreen");
@@ -82,11 +88,20 @@ restartButton.addEventListener("click", () => {
 
 });
 
+modeButtons.forEach(button => {
+
+    button.addEventListener(
+        "change",
+        updateModeMenu
+    );
+
+});
+
+updateModeMenu();
+
 document.addEventListener(
 "keydown",
 function(event){
-
-
 
     if(gameScreen.classList.contains("hidden")){
 
@@ -552,6 +567,61 @@ function getCurrentList(){
             return sentences;
 
     }
+
+}
+
+function updateModeMenu(){
+
+	const mode =
+        document.querySelector(
+            'input[name="mode"]:checked'
+        ).value;
+
+	listSelect.innerHTML = "";
+	
+	if(mode === "letters"){
+
+		wordBox.classList.add("hidden");
+
+		return;
+
+	}
+
+wordBox.classList.remove("hidden");
+	
+	if(mode==="words"){
+
+    listSelect.innerHTML=`
+
+        <option value="δισυλλαβες">
+            Δισύλλαβες
+        </option>
+
+        <option value="τρισυλλαβες">
+            Τρισύλλαβες
+        </option>
+
+        <option value="τετρασυλλαβες">
+            Τετρασύλλαβες
+        </option>
+
+    `;
+
+	}else if(mode==="sentences"){
+
+    listSelect.innerHTML=`
+
+        <option value="ευκολες">
+            Εύκολες
+        </option>
+
+        <option value="μεσαίες">
+            Μεσαίες
+        </option>
+
+    `;
+
+	}
 
 }
 
