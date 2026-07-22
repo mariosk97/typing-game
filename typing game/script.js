@@ -604,6 +604,10 @@ wordBox.classList.remove("hidden");
         <option value="τετρασυλλαβες">
             Τετρασύλλαβες
         </option>
+		
+		<option value="ζωα">
+            ζώα
+        </option>
 
     `;
 
