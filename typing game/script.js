@@ -587,29 +587,24 @@ function updateModeMenu(){
 
 	}
 
-wordBox.classList.remove("hidden");
+	wordBox.classList.remove("hidden");
 	
-	if(mode==="words"){
+	if(mode === "words"){
 
-    listSelect.innerHTML=`
+		listSelect.innerHTML = "";
 
-        <option value="δισυλλαβες">
-            Δισύλλαβες
-        </option>
+		for(const listName in wordLists){
 
-        <option value="τρισυλλαβες">
-            Τρισύλλαβες
-        </option>
+			const option =
+				document.createElement("option");
 
-        <option value="τετρασυλλαβες">
-            Τετρασύλλαβες
-        </option>
-		
-		<option value="ζωα">
-            ζώα
-        </option>
+			option.value = listName;
 
-    `;
+			option.textContent = listName;
+
+			listSelect.appendChild(option);
+
+		}
 
 	}else if(mode==="sentences"){
 
