@@ -281,8 +281,7 @@ async function startGame() {
                 "listSelect"
             ).value;
 
-        sentences =
-            [...sentenceLists[selectedList]];
+        sentences = [...sentenceLists[selectedList].items];
 
         if(randomOrder){
             shuffle(sentences);
@@ -548,7 +547,7 @@ function shuffle(array){
 
 function loadWords(listName) {
 
-    return [...wordLists[listName]];
+    return [...wordLists[listName].items];
 
 }
 
@@ -591,16 +590,13 @@ function updateModeMenu(){
 	
 	if(mode === "words"){
 
-		listSelect.innerHTML = "";
-
 		for(const listName in wordLists){
 
-			const option =
-				document.createElement("option");
+			const option = document.createElement("option");
 
 			option.value = listName;
 
-			option.textContent = listName;
+			option.textContent = wordLists[listName].title;
 
 			listSelect.appendChild(option);
 
@@ -608,17 +604,17 @@ function updateModeMenu(){
 
 	}else if(mode==="sentences"){
 
-    listSelect.innerHTML=`
+	for(const listName in sentenceLists){
 
-        <option value="ευκολες">
-            Εύκολες
-        </option>
+		const option = document.createElement("option");
 
-        <option value="μεσαίες">
-            Μεσαίες
-        </option>
+		option.value = listName;
 
-    `;
+		option.textContent = sentenceLists[listName].title;
+
+		listSelect.appendChild(option);
+
+	}
 
 	}
 
