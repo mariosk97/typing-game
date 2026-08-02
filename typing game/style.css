@@ -351,5 +351,7 @@ button:hover {
     gap:30px;
 
     margin:40px 0;
+	
+	flex-wrap:wrap;
 
 }

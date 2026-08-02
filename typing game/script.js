@@ -8,6 +8,14 @@
 // ΣΤΟΙΧΕΙΑ HTML
 // -----------------------------
 
+const modeLists = {
+
+    words: wordLists,
+
+    sentences: sentenceLists
+
+};
+
 const modeButtons = document.querySelectorAll('input[name="mode"]');
 
 const wordBox = document.getElementById("wordBox");
@@ -571,54 +579,41 @@ function getCurrentList(){
 
 function updateModeMenu(){
 
-	const mode =
+    const mode =
         document.querySelector(
             'input[name="mode"]:checked'
         ).value;
 
-	listSelect.innerHTML = "";
-	
-	if(mode === "letters"){
+    listSelect.innerHTML = "";
 
-		wordBox.classList.add("hidden");
+    if(mode === "letters"){
 
-		return;
+        wordBox.classList.add("hidden");
 
-	}
+        return;
 
-	wordBox.classList.remove("hidden");
-	
-	if(mode === "words"){
+    }
 
-		for(const listName in wordLists){
+    wordBox.classList.remove("hidden");
 
-			const option = document.createElement("option");
+    const currentLists = modeLists[mode];
 
-			option.value = listName;
+    for(const listName in currentLists){
 
-			option.textContent = wordLists[listName].title;
+        const option =
+            document.createElement("option");
 
-			listSelect.appendChild(option);
+        option.value = listName;
 
-		}
+        option.textContent =
+            currentLists[listName].title;
 
-	}else if(mode==="sentences"){
+        listSelect.appendChild(option);
 
-	for(const listName in sentenceLists){
-
-		const option = document.createElement("option");
-
-		option.value = listName;
-
-		option.textContent = sentenceLists[listName].title;
-
-		listSelect.appendChild(option);
-
-	}
-
-	}
+    }
 
 }
+
 
 
 
